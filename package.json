@@ -1,0 +1,68 @@
+{
+  "name": "react-shareit",
+  "author": "Zahid Khan",
+  "version": "3.0.0",
+  "description": "Share content on social media",
+  "license": "MIT",
+  "repository": "https://github.com/zahidkhan846",
+  "module": "./dist/esm/index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.tsx --inject-style --legacy-output --minify --format esm,cjs --dts --external react",
+    "dev": "tsup src/index.tsx --inject-style --legacy-output --format esm,cjs --watch --dts --external react",
+    "lint": "eslint src --fix",
+    "size": "size-limit"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "react": "^16 || ^17 || ^18",
+    "react-dom": "^16 || ^17 || ^18"
+  },
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^8.1.0",
+    "@types/react-dom": "^18.0.6",
+    "@types/react": "^18.0.21",
+    "@typescript-eslint/eslint-plugin": "^5.40.0",
+    "@typescript-eslint/parser": "^5.40.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.10",
+    "eslint-plugin-simple-import-sort": "^8.0.0",
+    "eslint-plugin-storybook": "^0.6.6",
+    "eslint": "8.25.0",
+    "postcss": "^8.4.17",
+    "prettier": "^2.7.1",
+    "react-dom": "^18.2.0",
+    "react": "^18.2.0",
+    "size-limit": "^8.1.0",
+    "tsup": "^6.2.3",
+    "typescript": "^4.8.4"
+  },
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "maintained node versions"
+  ],
+  "files": [
+    "dist/**"
+  ],
+  "size-limit": [
+    {
+      "path": "dist/index.js",
+      "limit": "10 KB"
+    }
+  ],
+  "keywords": [
+    "react",
+    "share",
+    "social meida",
+    "shareit",
+    "web-share",
+    "native",
+    "fallback",
+    "polyfill",
+    "component",
+    "tiny",
+    "lightweight"
+  ]
+}
