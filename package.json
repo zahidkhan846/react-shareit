@@ -4,7 +4,7 @@
   "version": "3.0.0",
   "description": "Share content on social media",
   "license": "MIT",
-  "repository": "https://github.com/zahidkhan846",
+  "repository": "https://github.com/zahidkhan846/react-shareit.git",
   "module": "./dist/esm/index.js",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
