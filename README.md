@@ -1,68 +1,89 @@
-# react-shareit
+# react-shareit 🚀
 
-- Share your content on social media.
+A modern, lightweight, and stylish React component to share content on social media. Now with **Glassmorphism**, **Mobile Bottom Sheets**, and **Platform Labels**.
+
+- 🍃 Only ~6kb gzipped and no external dependencies.
+- 🌀 Uses React Portal for a clean DOM.
+- ✌ Written in TypeScript with full type support.
+- 📱 Native Web Share API fallback with a premium custom UI.
+
+---
 
 ## ✨ Features
 
-- 🍃 Only ~6kb gzipped and no external dependencies
-- 🌀 Uses React Portal
-- ✌ Written w/ TypeScript
+- **Modern Design**: Glassmorphic UI with `backdrop-filter` blur effects.
+- **Responsive**: Native-feeling bottom sheet on mobile devices.
+- **Customizable**: Optional platform labels and success feedback for copying links.
+- **Animations**: Smooth entry/exit and hover micro-animations.
 
 ## 🔧 Installation
 
-````bash
+```bash
 npm i react-shareit    # npm
 yarn add react-shareit # yarn
-``
+```
 
-## 📦 Example
+## 📦 Usage
 
 ```tsx
-import React, { useState } from "react";
+import React from "react";
 import { ReactShare } from "react-shareit";
 
 const Example = () => {
   return (
-    <>
-      <ReactShare
-        data={{
-          text: "Text",
-          url: "https://blog.com/single-blog",
-          title: "Title",
-        }}
-        onClick={() => console.log("shared successfully!")}
-      >
-        <button>Share 🔗</button>
-      </ReactShare>
-    </>
+    <ReactShare
+      data={{
+        text: "Check this out!",
+        url: "https://your-awesome-site.com",
+        title: "Awesome Site",
+      }}
+      showLabels={true}
+      copySuccessText="Link Copied!"
+    >
+      <button>Share This 🔗</button>
+    </ReactShare>
   );
 };
 
 export default Example;
-````
+```
 
 ## 👀 Props
 
-| Prop            | Description                 | Type                 | Default                                       |
-| --------------- | --------------------------- | -------------------- | --------------------------------------------- |
-| `data`          | Share Object                | `{text, url, title}` | `{text: "", url: currentURL, title: "Share"}` |
-| `sites`         | sites                       | `string[]`           | all platforms (see list below for key list)   |
-| `closeText`     | translate close             | `string`             | localise close text                           |
-| `onClick`       | callback on sucessful share |                      |                                               |
-| `disableNative` | disables native share       | `boolean`            | `false`                                       |
+| Prop              | Description                    | Type                      | Default               |
+| ----------------- | ------------------------------ | ------------------------- | --------------------- |
+| `data`            | Share Data                     | `{text, url, title}`      | (required)            |
+| `sites`           | List of platforms to show      | `string[]`                | All supported sites   |
+| `showLabels`      | Show platform names below icons| `boolean`                 | `true`                |
+| `copySuccessText` | Text for the 'Copied!' toast   | `string`                  | `"Copied!"`           |
+| `closeText`       | Custom Close button text/icon  | `string \| ReactNode`      | `"Close"`             |
+| `onClick`         | Callback on platform selection | `(name: string) => void`  | `undefined`           |
+| `disableNative`   | Force the custom share modal   | `boolean`                 | `false`               |
+| `dark`            | Force dark mode icons          | `boolean`                 | `false`               |
+| `scrollable`      | Horizontal scroll row (mobile) | `boolean`                 | `false`               |
 
-## 🌎 Sites
+## 🌎 Supported Sites
 
-- facebook
-- twitter
-- whatsapp
-- reddit
-- telegram
-- linkedin
-- mail
-- copy (Copy to Clipboard)
-- vk
-- okru
+- `facebook`
+- `twitter` (X)
+- `whatsapp`
+- `reddit`
+- `telegram`
+- `linkedin`
+- `discord`
+- `pinterest`
+- `mail`
+- `copy` (Copy to Clipboard)
+
+## 🛠 Development & Testing
+
+This project includes a dedicated example app for local testing.
+
+```bash
+npm install
+npm run example
+```
+Accessible at `http://localhost:5173`.
 
 ## 📜 License
 

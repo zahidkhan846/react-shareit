@@ -11,16 +11,15 @@ import { SocialIcons } from "./components/social-icons";
 import { useDisclosure } from "./hooks/use-disclosure";
 import type { ReactShareProps } from "./interfaces";
 
-const defaultSites = Object.keys(IconList).slice(0, 8);
+const defaultSites = Object.keys(IconList);
 
 export const ReactShare = memo((props: ReactShareProps) => {
   const { onOpen, onClose, isOpen } = useDisclosure();
 
   const shareData = useMemo(
     () => ({
-      ...props.data,
-      title: props.data.title || "share",
       text: props.data.text || "",
+      title: props.data.title || "Share",
       url:
         props.data.url ||
         (typeof window !== "undefined" && window.location.href) ||
@@ -30,23 +29,26 @@ export const ReactShare = memo((props: ReactShareProps) => {
   );
 
   const handleOnClick = useCallback(async () => {
-    if (window.navigator.share && !props.disableNative) {
+    if (typeof window !== "undefined" && window.navigator.share && !props.disableNative) {
       try {
         await window.navigator.share(shareData);
-        props.onClick();
+        props.onClick?.("native");
       } catch (e) {
-        console.warn(e);
+        if ((e as Error).name !== 'AbortError') {
+           console.warn(e);
+           onOpen();
+        }
       }
     } else {
       onOpen();
     }
-  }, [shareData]);
+  }, [shareData, props.disableNative, props.onClick, onOpen]);
 
   return (
     <>
       {/* Overrides Children element's `onClick` event */}
-      {cloneElement(props.children, {
-        ...props.children?.props,
+      {cloneElement(props.children as React.ReactElement, {
+        ...(props.children as React.ReactElement).props,
         onClick: handleOnClick,
       })}
 
@@ -57,11 +59,13 @@ export const ReactShare = memo((props: ReactShareProps) => {
             <SocialIcons
               onClose={onClose}
               sites={props.sites || defaultSites}
-              data={shareData}
+              data={shareData as Required<typeof shareData>}
               closeText={props.closeText}
               onClick={props.onClick}
               dark={props.dark}
               scrollable={props.scrollable}
+              showLabels={props.showLabels}
+              copySuccessText={props.copySuccessText}
             />
           </Backdrop>
         </Portal>

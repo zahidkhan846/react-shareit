@@ -13,6 +13,8 @@ export const SocialIcons = ({
   onClick,
   dark,
   scrollable = false,
+  showLabels = true,
+  copySuccessText,
 }: SocialIconsProps) => (
   <section
     role="dialog"
@@ -29,6 +31,8 @@ export const SocialIcons = ({
           onClose={onClose}
           onClick={onClick}
           dark={dark}
+          showLabel={showLabels}
+          copySuccessText={copySuccessText}
         />
       ))}
     </div>
